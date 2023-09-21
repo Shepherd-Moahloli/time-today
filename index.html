@@ -18,15 +18,20 @@
         <div class="custom-cursor" id="custom-cursor"></div>
 
         <div id="circle"></div>
+        <div id="circle-1"></div>
+        <div id="circle-2"></div>
+
+        <div class="circle-container"></div>
+        
     </main>
     <div class="container">
         <div class="bottle">
             <div id="side">
+                <!--  <source src="y2mate.com - Lil Yachty TESLA Directed by Cole Bennett_720p.mp4"  type="video/mp4" >
                 <video autoplay loop controls>
-                    <source src="y2mate.com - Lil Yachty TESLA Directed by Cole Bennett_720p.mp4"  type="video/mp4" >
 
-                    <source src="y2mate.com - Lil Yachty TESLA Directed by Cole Bennett_720p.mp4" type="audio/mp4" >
                 </video>
+                <source src="y2mate.com - Lil Yachty TESLA Directed by Cole Bennett_720p.mp4" type="audio/mp4" >-->
             </div>
 
             <div id="water"></div>
@@ -43,10 +48,18 @@
         </select>
     </div>
 
+    <div id="alarm">
+        <audio src=""></audio>
+        <input type="time" id="alarmTimeInput" value="08:00">
+
+        <button id="setAlarm">Set Alarm</button>
+    </div>
+
     <button id="dayNightToggle">
         <img id="toggleImage" src="images/day-and-night.png" alt="day-and-night" >
         
     </button>
+    <div class="overlay"></div>
     <script defer src="js/main.js"></script>
 </body>
 

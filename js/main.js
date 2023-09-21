@@ -1,14 +1,49 @@
+
+
+
 document.addEventListener('mousemove', (e) => {
     const cursor = document.querySelector('.custom-cursor');
+  
+  
     cursor.style.left = `${e.clientX}px`;
     cursor.style.top = `${e.clientY}px`;
 
-    const backgroundScale = (e.clientX / window.innerWidth) * 10;
+    const scaleFactorX = ((e.clientX + e.clientY) / (window.innerWidth + window.innerHeight)) * 20;
+    const scaleFactorY = ((e.clientX + e.clientY) / (window.innerWidth + window.innerHeight)) * 20;
+   
+    cursor.style.width = `${scaleFactorX}rem`;
+    cursor.style.height = `${scaleFactorY}rem`;
+
+    cursor.style.borderRadius = '50%';
 
     
-    cursor.style.width = `${50 + backgroundScale}px`;
-    cursor.style.height = `${50 + backgroundScale}px`;
   });
+
+
+
+  function changeCursorSize(width, height) {
+    const cursor = document.querySelector('.custom-cursor');
+    cursor.style.width = `${width}px`;
+    cursor.style.height = `${height}px`;
+  }
+
+  // Add event listeners to specific elements for cursor size change
+  const elementsToHover = document.querySelectorAll('#elementId1, #elementId2');
+
+  elementsToHover.forEach((element) => {
+    element.addEventListener('mouseenter', () => {
+      changeCursorSize(30, 30); // Change size as desired
+    });
+
+    element.addEventListener('mouseleave', () => {
+      changeCursorSize(20, 20); // Return to default size
+    });
+  });
+
+
+
+ 
+  
 
 
 
@@ -34,6 +69,8 @@ document.addEventListener('mousemove', (e) => {
     const quaterElement = document.getElementById('quater');
     const timeElement = document.getElementById('time');
     const circleElement = document.getElementById('circle');
+    const circleElement1 = document.getElementById('circle-1');
+    const circleElement2 = document.getElementById('circle-2');
     const waterElement = document.getElementById('water');
     const bottleElements = document.querySelectorAll('.bottle');
     const customCursor = document.getElementById('custom-cursor');
@@ -54,9 +91,12 @@ document.addEventListener('mousemove', (e) => {
 
     if (isBlackBackground) {
         circleElement.style.setProperty('--random-color', randomColor);
+        circleElement1.style.setProperty('--random-color', randomColor);
+        circleElement2.style.setProperty('--random-color', randomColor);
         circleElement.style.backgroundColor = randomColor;
+        circleElement1.style.backgroundColor = randomColor;
+        circleElement2.style.backgroundColor = randomColor;
         customCursor.style.backgroundColor = randomColor;
-        
         
         
         bottleElements.forEach((element) => {
@@ -73,9 +113,15 @@ document.addEventListener('mousemove', (e) => {
       } else {
         if ((animationTime >= 0.0 && animationTime < 0.3) || (animationTime >= 0.45 && animationTime < 0.55) || (animationTime >= 0.7 && animationTime <= 1)) {
           circleElement.style.backgroundColor = 'none';
+          circleElement1.style.backgroundColor = 'none';
+          circleElement2.style.backgroundColor = 'none';
         } else if (animationTime >= 0.5 && animationTime < 0.6) {
             circleElement.style.display = 'block';
+            circleElement1.style.display = 'block';
+            circleElement2.style.display = 'block';
             circleElement.style.setProperty('--random-color', randomColor);
+            circleElement1.style.setProperty('--random-color', randomColor);
+            circleElement2.style.setProperty('--random-color', randomColor);
             customCursor.style.backgroundColor = randomColor;
             
             
@@ -88,12 +134,16 @@ document.addEventListener('mousemove', (e) => {
 
 
             circleElement.style.backgroundColor = randomColor;
+            circleElement1.style.backgroundColor = randomColor;
+            circleElement2.style.backgroundColor = randomColor;
             itsElement.style.color = randomColor;
           quaterElement.style.color = randomColor;
           timeElement.style.color = randomColor;
           waterElement.style.backgroundColor = randomColor;
         } else {
             circleElement.style.display = 'none';
+            circleElement1.style.display = 'none';
+            circleElement2.style.display = 'none';
         }
       }
 
@@ -125,10 +175,6 @@ document.addEventListener('mousemove', (e) => {
     timeElement.textContent = timeWords.slice(2, -1).join(' ');
   }
 
-  // Function to convert time to words
-  function timetoWords(time) {
-    // ... (your existing timetoWords function) ...
-  }
 
   // Initial call to set up the time text
   updateTimeText();
@@ -204,7 +250,9 @@ const dayNightToggle = document.getElementById('dayNightToggle');
 const body = document.body;
 const toggleImage = document.getElementById('toggleImage');
 const speakerImage = document.querySelector('#speakerButton img');
-
+const customCursor = document.getElementById('custom-cursor');
+const waterElement = document.getElementById('water');
+let cursorBackgroundColor = getRandomPastelColor();
 
 
 dayNightToggle.addEventListener('click', () => {
@@ -232,6 +280,7 @@ dayNightToggle.addEventListener('click', () => {
         languageSelect.style.border = 'none';
         languageSelect.style.color = '#f0f0f0'
         languageSelect.style.borderRadius = '0.5rem';
+        
         applyShadowToBottle();
     }
 });
@@ -244,8 +293,31 @@ dayNightToggle.addEventListener('click', () => {
 
 
 
-// white drop shadow on black background 
+// Create random circles
 
+function getRandomNumber(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function createRandomCircle(){
+  const circle = document.createElement('div');
+  circle.classList.add('circle');
+  
+
+  const left = getRandomNumber(0, 60);
+  const top = getRandomNumber(0, 60);
+
+  circle.style.left = `${left}%`;
+  circle.style.top = `${top}%`;
+
+  return circle;
+}
+
+const circleContainer = document.querySelector('.circle-container');
+for (let i = 0; i < 10; i++) {
+  const circle = createRandomCircle();
+  circleContainer.appendChild(circle);
+}
 
 
 
@@ -256,29 +328,132 @@ dayNightToggle.addEventListener('click', () => {
 
 // Spanish Language, I really need Copilot
 
+const speakerButton = document.getElementById('speakerButton');
+const languageSelect = document.getElementById('languageSelect');
+const itsElement = document.getElementById('its');
+const quaterElement = document.getElementById('quater');
+const timeElement = document.getElementById('time');
+let selectedLanguage = 'en';
 
-let selectedLanguage = 'english';
+function updateTextContentForLanguage() {
+  const currentTime = new Date();
+  const hours = currentTime.getHours();
+  const minutes = currentTime.getMinutes();
 
-function setLanguage(language) {
-    selectedLanguage = language;
-}
-
-  function timetoSpanishWords(time) {
-
+if (selectedLanguage === 'es') {
+  const numbersInSpanish = [
+    'CERO', 'UNO', 'DOS', 'TRES', 'CUATRO', 'CINCO',
+    'SEIS', 'SIETE', 'OCHO', 'NUEVE', 'DIEZ',
+    'ONCE', 'DOCE', 'TRECE', 'CATORCE', 'QUINCE',
+    'DIECISÉIS', 'DIECISIETE', 'DIECIOCHO', 'DIECINUEVE'
+  ];
+  
+  const tensInSpanish = [
+    '', '', 'VEINTE', 'TREINTA', 'CUARENTA', 'CINCUENTA'
+  ];
+  
+  let timeInWords = "IT'S";
+  
+  if (hours === 0) {
+    timeInWords = 'MEDIANOCHE';
+  } else if (hours === 12) {
+    timeInWords = 'MEDIODÍA';
+  } else if (hours < 12) {
+    timeInWords = `${numbersInSpanish[hours]} DE LA MAÑANA`;
+  } else {
+    timeInWords = `${numbersInSpanish[hours - 12]} DE LA TARDE`;
+  }
+  
+  if (minutes > 0) {
+    if (minutes <= 19) {
+      timeInWords += ` Y ${numbersInSpanish[minutes]}`;
+    } else {
+      const ten = Math.floor(minutes / 10);
+      const unit = minutes % 10;
+      timeInWords += ` Y ${tensInSpanish[ten]}`;
+      if (unit > 0) {
+        timeInWords += ` Y ${numbersInSpanish[unit]}`;
+      }
+    }
   }
 
-  function speakTime() {
+  itsElement.textContent = 'ES';
+  quaterElement.textContent = 'CUARTO';
 
-    
+  
+  timeElement.textContent = timeInWords;
+} else {
+  itsElement.textContent = 'IT\'S';
+  quaterElement.textContent = 'QUARTER';
+  
+    timeElement.textContent = timeInWords;
+}
+}
+
+languageSelect.addEventListener('change', () => {
+selectedLanguage = languageSelect.value;
+updateTextContentForLanguage();
+speakTime();
+});
+
+
+
+  function timetoSpanishWords(time) {
+    const hours = time.getHours();
+    const minutes = time.getMinutes();
+
+  // Define the words for numbers in Spanish
+  const numbersInSpanish = [
+    'CERO', 'UNO', 'DOS', 'TRES', 'CUATRO', 'CINCO',
+    'SEIS', 'SIETE', 'OCHO', 'NUEVE', 'DIEZ',
+    'ONCE', 'DOCE', 'TRECE', 'CATORCE', 'QUINCE',
+    'DIECISÉIS', 'DIECISIETE', 'DIECIOCHO', 'DIECINUEVE'
+];
+
+// Define words for tens in Spanish
+const tensInSpanish = [
+    '', '', 'VEINTE', 'TREINTA', 'CUARENTA', 'CINCUENTA'
+];
+
+  // Convert hours and minutes to Spanish words
+  let timeInWords = "IT'S";
+
+  if (hours === 0) {
+    timeInWords = 'MEDIANOCHE';
+} else if (hours === 12) {
+    timeInWords = 'MEDIODÍA';
+} else if (hours < 12) {
+    timeInWords = `${numbersInSpanish[hours]} DE LA MAÑANA`;
+} else {
+    timeInWords = `${numbersInSpanish[hours - 12]} DE LA TARDE`;
+}
+
+if (minutes > 0) {
+    if (minutes <= 19) {
+        timeInWords += ` Y ${numbersInSpanish[minutes]}`;
+    } else {
+        const ten = Math.floor(minutes / 10);
+        const unit = minutes % 10;
+        timeInWords += ` Y ${tensInSpanish[ten]}`;
+        if (unit > 0) {
+            timeInWords += ` Y ${numbersInSpanish[unit]}`;
+        }
+    }
+}
+
+  return timeInWords;
+}
+
+  function speakTime() {
     const itsElement = document.getElementById('its');
     const quaterElement = document.getElementById('quater');
     const timeElement = document.getElementById('time');
     
     let timeInWords;
-    if (selectedLanguage === 'english') {
+    if (selectedLanguage === 'en') {
 
         timeInWords = `${itsElement.textContent} ${quaterElement.textContent} ${timeElement.textContent}`;
-    } else if (selectedLanguage === 'spanish') {
+    } else if (selectedLanguage === 'es') {
         timeInWords = timetoSpanishWords(new Date());
     }
 
@@ -287,8 +462,25 @@ function setLanguage(language) {
     const synth = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(timeInWords);
 
+    if(selectedLanguage === 'es') {
+      utterance.lang = 'es-ES';
+    } else {
+      utterance.lang = 'en-US';
+    }
+
     synth.speak(utterance);
   }
 
-  const speakerButton = document.getElementById('speakerButton');
+  
   speakerButton.addEventListener('click', speakTime, true);
+
+
+  // Trigger the alarm sound
+
+const alarmHour = 8;
+const alarmMinute = 0;
+
+
+  
+
+ 
