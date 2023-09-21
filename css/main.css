@@ -212,10 +212,11 @@
          opacity: 1;
      }
 
-     40% {
+     45%{
          background-color: var(--random-color);
          opacity: 1;
      }
+     
 
      67% {
         background-color: var(--random-color);
