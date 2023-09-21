@@ -2,188 +2,188 @@
 
 
 document.addEventListener('mousemove', (e) => {
-    const cursor = document.querySelector('.custom-cursor');
-  
-  
-    cursor.style.left = `${e.clientX}px`;
-    cursor.style.top = `${e.clientY}px`;
-
-    const scaleFactorX = ((e.clientX + e.clientY) / (window.innerWidth + window.innerHeight)) * 20;
-    const scaleFactorY = ((e.clientX + e.clientY) / (window.innerWidth + window.innerHeight)) * 20;
-   
-    cursor.style.width = `${scaleFactorX}rem`;
-    cursor.style.height = `${scaleFactorY}rem`;
-
-    cursor.style.borderRadius = '50%';
-
-    
-  });
+  const cursor = document.querySelector('.custom-cursor');
 
 
+  cursor.style.left = `${e.clientX}px`;
+  cursor.style.top = `${e.clientY}px`;
 
-  function changeCursorSize(width, height) {
-    const cursor = document.querySelector('.custom-cursor');
-    cursor.style.width = `${width}px`;
-    cursor.style.height = `${height}px`;
-  }
+  const scaleFactorX = ((e.clientX + e.clientY) / (window.innerWidth + window.innerHeight)) * 20;
+  const scaleFactorY = ((e.clientX + e.clientY) / (window.innerWidth + window.innerHeight)) * 20;
 
-  // Add event listeners to specific elements for cursor size change
-  const elementsToHover = document.querySelectorAll('#elementId1, #elementId2');
+  cursor.style.width = `${scaleFactorX}rem`;
+  cursor.style.height = `${scaleFactorY}rem`;
 
-  elementsToHover.forEach((element) => {
-    element.addEventListener('mouseenter', () => {
-      changeCursorSize(30, 30); // Change size as desired
-    });
+  cursor.style.borderRadius = '50%';
 
-    element.addEventListener('mouseleave', () => {
-      changeCursorSize(20, 20); // Return to default size
-    });
-  });
+
+});
 
 
 
- 
-  
-
-
-
-  //This is the function
-  function getRandomPastelColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
-
-  function getRandomRGBColor() {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    return `${r}, ${g}, ${b}`;
+function changeCursorSize(width, height) {
+  const cursor = document.querySelector('.custom-cursor');
+  cursor.style.width = `${width}px`;
+  cursor.style.height = `${height}px`;
 }
 
-  function updateTimeText() {
-    const itsElement = document.getElementById('its');
-    const quaterElement = document.getElementById('quater');
-    const timeElement = document.getElementById('time');
-    const circleElement = document.getElementById('circle');
-    const circleElement1 = document.getElementById('circle-1');
-    const circleElement2 = document.getElementById('circle-2');
-    const waterElement = document.getElementById('water');
-    const bottleElements = document.querySelectorAll('.bottle');
-    const customCursor = document.getElementById('custom-cursor');
-    const languageSelect = document.getElementById('languageSelect');
-    
+// Add event listeners to specific elements for cursor size change
+const elementsToHover = document.querySelectorAll('#elementId1, #elementId2');
 
-    itsElement.textContent = 'IT\'S';
-    quaterElement.textContent = 'QUATER';
-    timeElement.textContent = 'PAST&nbsp TEN';
-    //Get a random color
+elementsToHover.forEach((element) => {
+  element.addEventListener('mouseenter', () => {
+    changeCursorSize(30, 30); // Change size as desired
+  });
 
-
-    const animationTime = (new Date().getSeconds() % 60) / 60;
-
-    const randomColor = getRandomPastelColor();
-
-    const isBlackBackground = document.body.style.backgroundColor === 'black';
-
-    if (isBlackBackground) {
-        circleElement.style.setProperty('--random-color', randomColor);
-        circleElement1.style.setProperty('--random-color', randomColor);
-        circleElement2.style.setProperty('--random-color', randomColor);
-        circleElement.style.backgroundColor = randomColor;
-        circleElement1.style.backgroundColor = randomColor;
-        circleElement2.style.backgroundColor = randomColor;
-        customCursor.style.backgroundColor = randomColor;
-        
-        
-        bottleElements.forEach((element) => {
-            element.style.boxShadow = `2px 2px 5px ${randomColor}`
-        });
-
-        languageSelect.style.boxShadow = `2px 2px 5px ${randomColor}`;
-
-
-        itsElement.style.color = randomColor;
-        quaterElement.style.color = randomColor;
-        timeElement.style.color = randomColor;
-        waterElement.style.backgroundColor = randomColor;
-      } else {
-        if ((animationTime >= 0.0 && animationTime < 0.3) || (animationTime >= 0.45 && animationTime < 0.55) || (animationTime >= 0.7 && animationTime <= 1)) {
-          circleElement.style.backgroundColor = 'none';
-          circleElement1.style.backgroundColor = 'none';
-          circleElement2.style.backgroundColor = 'none';
-        } else if (animationTime >= 0.5 && animationTime < 0.6) {
-            circleElement.style.display = 'block';
-            circleElement1.style.display = 'block';
-            circleElement2.style.display = 'block';
-            circleElement.style.setProperty('--random-color', randomColor);
-            circleElement1.style.setProperty('--random-color', randomColor);
-            circleElement2.style.setProperty('--random-color', randomColor);
-            customCursor.style.backgroundColor = randomColor;
-            
-            
-            
-            bottleElements.forEach((element) => {
-                element.style.boxShadow = `2px 2px 5px ${randomColor}`;
-            });
-
-            languageSelect.style.boxShadow = `2px 2px 5px ${randomColor}`;
-
-
-            circleElement.style.backgroundColor = randomColor;
-            circleElement1.style.backgroundColor = randomColor;
-            circleElement2.style.backgroundColor = randomColor;
-            itsElement.style.color = randomColor;
-          quaterElement.style.color = randomColor;
-          timeElement.style.color = randomColor;
-          waterElement.style.backgroundColor = randomColor;
-        } else {
-            circleElement.style.display = 'none';
-            circleElement1.style.display = 'none';
-            circleElement2.style.display = 'none';
-        }
-      }
+  element.addEventListener('mouseleave', () => {
+    changeCursorSize(20, 20); // Return to default size
+  });
+});
 
 
 
-// Top text animated 
-
-    const spaceBetweenWords = '50px';
-    itsElement.style.marginRight = spaceBetweenWords;
-    quaterElement.style.marginRight = spaceBetweenWords;
-    timeElement.style.marginRight = spaceBetweenWords;
 
 
 
-  
+
+
+//This is the function
+function getRandomPastelColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+function getRandomRGBColor() {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  return `${r}, ${g}, ${b}`;
+}
+
+function updateTimeText() {
+  const itsElement = document.getElementById('its');
+  const quaterElement = document.getElementById('quater');
+  const timeElement = document.getElementById('time');
+  const circleElement = document.getElementById('circle');
+  const circleElement1 = document.getElementById('circle-1');
+  const circleElement2 = document.getElementById('circle-2');
+  const waterElement = document.getElementById('water');
+  const bottleElements = document.querySelectorAll('.bottle');
+  const customCursor = document.getElementById('custom-cursor');
+  const languageSelect = document.getElementById('languageSelect');
+
+
+  itsElement.textContent = 'IT\'S';
+  quaterElement.textContent = 'QUATER';
+  timeElement.textContent = 'PAST&nbsp TEN';
+  //Get a random color
+
+
+  const animationTime = (new Date().getSeconds() % 60) / 60;
+
+  const randomColor = getRandomPastelColor();
+
+  const isBlackBackground = document.body.style.backgroundColor === 'black';
+
+  if (isBlackBackground) {
+    circleElement.style.setProperty('--random-color', randomColor);
+    circleElement1.style.setProperty('--random-color', randomColor);
+    circleElement2.style.setProperty('--random-color', randomColor);
+    circleElement.style.backgroundColor = randomColor;
+    circleElement1.style.backgroundColor = randomColor;
+    circleElement2.style.backgroundColor = randomColor;
+    customCursor.style.backgroundColor = randomColor;
+
+
+    bottleElements.forEach((element) => {
+      element.style.boxShadow = `2px 2px 5px ${randomColor}`
+    });
+
+    languageSelect.style.boxShadow = `2px 2px 5px ${randomColor}`;
+
+
+    itsElement.style.color = randomColor;
+    quaterElement.style.color = randomColor;
+    timeElement.style.color = randomColor;
+    waterElement.style.backgroundColor = randomColor;
+  } else {
+    if ((animationTime >= 0.0 && animationTime < 0.3) || (animationTime >= 0.45 && animationTime < 0.55) || (animationTime >= 0.7 && animationTime <= 1)) {
+      circleElement.style.backgroundColor = 'none';
+      circleElement1.style.backgroundColor = 'none';
+      circleElement2.style.backgroundColor = 'none';
+    } else if (animationTime >= 0.5 && animationTime < 0.6) {
+      circleElement.style.display = 'block';
+      circleElement1.style.display = 'block';
+      circleElement2.style.display = 'block';
+      circleElement.style.setProperty('--random-color', randomColor);
+      circleElement1.style.setProperty('--random-color', randomColor);
+      circleElement2.style.setProperty('--random-color', randomColor);
+      customCursor.style.backgroundColor = randomColor;
 
 
 
-    // Get the current date and time
-    const currentTime = new Date();
+      bottleElements.forEach((element) => {
+        element.style.boxShadow = `2px 2px 5px ${randomColor}`;
+      });
 
-    // Call the timetoWords function to get the time in words
-    const timeInWords = timetoWords(currentTime);
+      languageSelect.style.boxShadow = `2px 2px 5px ${randomColor}`;
 
-    // Update the time elements with the calculated time text
-    const timeWords = timeInWords.split(' ');
-    itsElement.textContent = timeWords[0];
-    quaterElement.textContent = timeWords[1];
-    timeElement.textContent = timeWords.slice(2, -1).join(' ');
+
+      circleElement.style.backgroundColor = randomColor;
+      circleElement1.style.backgroundColor = randomColor;
+      circleElement2.style.backgroundColor = randomColor;
+      itsElement.style.color = randomColor;
+      quaterElement.style.color = randomColor;
+      timeElement.style.color = randomColor;
+      waterElement.style.backgroundColor = randomColor;
+    } else {
+      circleElement.style.display = 'none';
+      circleElement1.style.display = 'none';
+      circleElement2.style.display = 'none';
+    }
   }
 
 
-  // Initial call to set up the time text
-  updateTimeText();
 
-  // Update the time text every minute
-  setInterval(updateTimeText, 60000);
+  // Top text animated 
 
-  function timetoWords(time) {
-    const hours = time.getHours();
+  const spaceBetweenWords = '50px';
+  itsElement.style.marginRight = spaceBetweenWords;
+  quaterElement.style.marginRight = spaceBetweenWords;
+  timeElement.style.marginRight = spaceBetweenWords;
+
+
+
+
+
+
+
+  // Get the current date and time
+  const currentTime = new Date();
+
+  // Call the timetoWords function to get the time in words
+  const timeInWords = timetoWords(currentTime);
+
+  // Update the time elements with the calculated time text
+  const timeWords = timeInWords.split(' ');
+  itsElement.textContent = timeWords[0];
+  quaterElement.textContent = timeWords[1];
+  timeElement.textContent = timeWords.slice(2, -1).join(' ');
+}
+
+
+// Initial call to set up the time text
+updateTimeText();
+
+// Update the time text every minute
+setInterval(updateTimeText, 60000);
+
+function timetoWords(time) {
+  const hours = time.getHours();
   const minutes = time.getMinutes();
   const period = hours >= 12;
 
@@ -245,7 +245,7 @@ document.addEventListener('mousemove', (e) => {
 
 
 
-  // Night and Day  Toggle button
+// Night and Day  Toggle button
 const dayNightToggle = document.getElementById('dayNightToggle');
 const body = document.body;
 const toggleImage = document.getElementById('toggleImage');
@@ -255,40 +255,76 @@ const waterElement = document.getElementById('water');
 let cursorBackgroundColor = getRandomPastelColor();
 
 
-dayNightToggle.addEventListener('click', () => {
-    if(body.style.backgroundColor === 'black') {
-        body.style.backgroundColor = '#f0f0f0';
-        toggleImage.src = 'images/day-and-night.png';
-        speakerImage.src = 'images/medium-volume.png';
-        speakerButton.style.backgroundColor = '#dadada';
-        speakerButton.classList.remove('black-background');
-        languageSelect.style.backgroundColor = '#f0f0f0';
-        languageSelect.style.border = 'none';
-        
-        languageSelect.style.color = '#000'
-        languageSelect.style.borderRadius = '0.5rem';
-        applyShadowToBottle();
+let lastScrollTop = 0;
 
-        
-    } else {
-        body.style.backgroundColor = 'black';
-        toggleImage.src = 'images/night.png'
-        speakerImage.src = 'images/medium-volume-DAY.png';
-        speakerButton.style.backgroundColor = '#222';
-        speakerButton.classList.add('black-background');
-        languageSelect.style.backgroundColor = '#000';
-        languageSelect.style.border = 'none';
-        languageSelect.style.color = '#f0f0f0'
-        languageSelect.style.borderRadius = '0.5rem';
-        
-        applyShadowToBottle();
+
+function toggleBackground() {
+  if (body.style.backgroundColor === 'black') {
+    body.style.backgroundColor = '#f0f0f0';
+
+  } else {
+    body.style.backgroundColor = 'black';
+
+  }
+}
+
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+
+  if (scrollTop > lastScrollTop) {
+    if (body.style.backgroundColor === 'black') {
+      body.style.backgroundColor = '#f0f0f0';
+      
     }
+  } else if (scrollTop < lastScrollTop) {
+    if (body.style.backgroundColor !== 'black') {
+        body.style.backgroundColor = '#f0f0f0';
+        
+      }
+    }
+
+    lastScrollTop = scrollTop;
+  });
+
+dayNightToggle.addEventListener('click', () => {
+  if (body.style.backgroundColor === 'black') {
+    body.style.backgroundColor = '#f0f0f0';
+    toggleImage.src = 'images/day-and-night.png';
+    speakerImage.src = 'images/medium-volume.png';
+    speakerButton.style.backgroundColor = '#dadada';
+    speakerButton.classList.remove('black-background');
+    languageSelect.style.backgroundColor = '#f0f0f0';
+    languageSelect.style.border = 'none';
+    languageSelect.style.color = '#000'
+    languageSelect.style.borderRadius = '0.5rem';
+    applyShadowToBottle();
+
+
+  } else {
+    body.style.backgroundColor = 'black';
+    toggleImage.src = 'images/night.png';
+    speakerImage.src = 'images/medium-volume-DAY.png';
+    speakerButton.style.backgroundColor = '#222';
+    speakerButton.classList.add('black-background');
+    languageSelect.style.backgroundColor = '#000';
+    languageSelect.style.border = 'none';
+    languageSelect.style.color = '#f0f0f0'
+    languageSelect.style.borderRadius = '0.5rem';
+    applyShadowToBottle();
+  }
 });
 
 
+console.log(lastScrollTop)
 
 
-  
+
+
+
+
+
+
 
 
 
@@ -299,10 +335,10 @@ function getRandomNumber(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-function createRandomCircle(){
+function createRandomCircle() {
   const circle = document.createElement('div');
   circle.classList.add('circle');
-  
+
 
   const left = getRandomNumber(0, 60);
   const top = getRandomNumber(0, 60);
@@ -324,7 +360,7 @@ for (let i = 0; i < 10; i++) {
 
 
 
-  
+
 
 // Spanish Language, I really need Copilot
 
@@ -340,20 +376,84 @@ function updateTextContentForLanguage() {
   const hours = currentTime.getHours();
   const minutes = currentTime.getMinutes();
 
-if (selectedLanguage === 'es') {
+  if (selectedLanguage === 'es') {
+    const numbersInSpanish = [
+      'CERO', 'UNO', 'DOS', 'TRES', 'CUATRO', 'CINCO',
+      'SEIS', 'SIETE', 'OCHO', 'NUEVE', 'DIEZ',
+      'ONCE', 'DOCE', 'TRECE', 'CATORCE', 'QUINCE',
+      'DIECISÉIS', 'DIECISIETE', 'DIECIOCHO', 'DIECINUEVE'
+    ];
+
+    const tensInSpanish = [
+      '', '', 'VEINTE', 'TREINTA', 'CUARENTA', 'CINCUENTA'
+    ];
+
+    let timeInWords = "IT'S";
+
+    if (hours === 0) {
+      timeInWords = 'MEDIANOCHE';
+    } else if (hours === 12) {
+      timeInWords = 'MEDIODÍA';
+    } else if (hours < 12) {
+      timeInWords = `${numbersInSpanish[hours]} DE LA MAÑANA`;
+    } else {
+      timeInWords = `${numbersInSpanish[hours - 12]} DE LA TARDE`;
+    }
+
+    if (minutes > 0) {
+      if (minutes <= 19) {
+        timeInWords += ` Y ${numbersInSpanish[minutes]}`;
+      } else {
+        const ten = Math.floor(minutes / 10);
+        const unit = minutes % 10;
+        timeInWords += ` Y ${tensInSpanish[ten]}`;
+        if (unit > 0) {
+          timeInWords += ` Y ${numbersInSpanish[unit]}`;
+        }
+      }
+    }
+
+    itsElement.textContent = 'ES';
+    quaterElement.textContent = 'CUARTO';
+
+
+    timeElement.textContent = timeInWords;
+  } else {
+    itsElement.textContent = 'IT\'S';
+    quaterElement.textContent = 'QUARTER';
+
+    timeElement.textContent = timeInWords;
+  }
+}
+
+languageSelect.addEventListener('change', () => {
+  selectedLanguage = languageSelect.value;
+  updateTextContentForLanguage();
+  speakTime();
+});
+
+
+
+function timetoSpanishWords(time) {
+  const hours = time.getHours();
+  const minutes = time.getMinutes();
+
+  // Define the words for numbers in Spanish
   const numbersInSpanish = [
     'CERO', 'UNO', 'DOS', 'TRES', 'CUATRO', 'CINCO',
     'SEIS', 'SIETE', 'OCHO', 'NUEVE', 'DIEZ',
     'ONCE', 'DOCE', 'TRECE', 'CATORCE', 'QUINCE',
     'DIECISÉIS', 'DIECISIETE', 'DIECIOCHO', 'DIECINUEVE'
   ];
-  
+
+  // Define words for tens in Spanish
   const tensInSpanish = [
     '', '', 'VEINTE', 'TREINTA', 'CUARENTA', 'CINCUENTA'
   ];
-  
+
+  // Convert hours and minutes to Spanish words
   let timeInWords = "IT'S";
-  
+
   if (hours === 0) {
     timeInWords = 'MEDIANOCHE';
   } else if (hours === 12) {
@@ -363,7 +463,7 @@ if (selectedLanguage === 'es') {
   } else {
     timeInWords = `${numbersInSpanish[hours - 12]} DE LA TARDE`;
   }
-  
+
   if (minutes > 0) {
     if (minutes <= 19) {
       timeInWords += ` Y ${numbersInSpanish[minutes]}`;
@@ -377,110 +477,46 @@ if (selectedLanguage === 'es') {
     }
   }
 
-  itsElement.textContent = 'ES';
-  quaterElement.textContent = 'CUARTO';
-
-  
-  timeElement.textContent = timeInWords;
-} else {
-  itsElement.textContent = 'IT\'S';
-  quaterElement.textContent = 'QUARTER';
-  
-    timeElement.textContent = timeInWords;
-}
-}
-
-languageSelect.addEventListener('change', () => {
-selectedLanguage = languageSelect.value;
-updateTextContentForLanguage();
-speakTime();
-});
-
-
-
-  function timetoSpanishWords(time) {
-    const hours = time.getHours();
-    const minutes = time.getMinutes();
-
-  // Define the words for numbers in Spanish
-  const numbersInSpanish = [
-    'CERO', 'UNO', 'DOS', 'TRES', 'CUATRO', 'CINCO',
-    'SEIS', 'SIETE', 'OCHO', 'NUEVE', 'DIEZ',
-    'ONCE', 'DOCE', 'TRECE', 'CATORCE', 'QUINCE',
-    'DIECISÉIS', 'DIECISIETE', 'DIECIOCHO', 'DIECINUEVE'
-];
-
-// Define words for tens in Spanish
-const tensInSpanish = [
-    '', '', 'VEINTE', 'TREINTA', 'CUARENTA', 'CINCUENTA'
-];
-
-  // Convert hours and minutes to Spanish words
-  let timeInWords = "IT'S";
-
-  if (hours === 0) {
-    timeInWords = 'MEDIANOCHE';
-} else if (hours === 12) {
-    timeInWords = 'MEDIODÍA';
-} else if (hours < 12) {
-    timeInWords = `${numbersInSpanish[hours]} DE LA MAÑANA`;
-} else {
-    timeInWords = `${numbersInSpanish[hours - 12]} DE LA TARDE`;
-}
-
-if (minutes > 0) {
-    if (minutes <= 19) {
-        timeInWords += ` Y ${numbersInSpanish[minutes]}`;
-    } else {
-        const ten = Math.floor(minutes / 10);
-        const unit = minutes % 10;
-        timeInWords += ` Y ${tensInSpanish[ten]}`;
-        if (unit > 0) {
-            timeInWords += ` Y ${numbersInSpanish[unit]}`;
-        }
-    }
-}
-
   return timeInWords;
 }
 
-  function speakTime() {
-    const itsElement = document.getElementById('its');
-    const quaterElement = document.getElementById('quater');
-    const timeElement = document.getElementById('time');
-    
-    let timeInWords;
-    if (selectedLanguage === 'en') {
+function speakTime() {
+  const itsElement = document.getElementById('its');
+  const quaterElement = document.getElementById('quater');
+  const timeElement = document.getElementById('time');
 
-        timeInWords = `${itsElement.textContent} ${quaterElement.textContent} ${timeElement.textContent}`;
-    } else if (selectedLanguage === 'es') {
-        timeInWords = timetoSpanishWords(new Date());
-    }
+  let timeInWords;
+  if (selectedLanguage === 'en') {
 
-
-    
-    const synth = window.speechSynthesis;
-    const utterance = new SpeechSynthesisUtterance(timeInWords);
-
-    if(selectedLanguage === 'es') {
-      utterance.lang = 'es-ES';
-    } else {
-      utterance.lang = 'en-US';
-    }
-
-    synth.speak(utterance);
+    timeInWords = `${itsElement.textContent} ${quaterElement.textContent} ${timeElement.textContent}`;
+  } else if (selectedLanguage === 'es') {
+    timeInWords = timetoSpanishWords(new Date());
   }
 
-  
-  speakerButton.addEventListener('click', speakTime, true);
 
 
-  // Trigger the alarm sound
+  const synth = window.speechSynthesis;
+  const utterance = new SpeechSynthesisUtterance(timeInWords);
+
+  if (selectedLanguage === 'es') {
+    utterance.lang = 'es-ES';
+  } else {
+    utterance.lang = 'en-US';
+  }
+
+  synth.speak(utterance);
+}
+
+
+speakerButton.addEventListener('click', speakTime, true);
+
+
+// Trigger the alarm sound
 
 const alarmHour = 8;
 const alarmMinute = 0;
 
 
-  
 
- 
+
+
