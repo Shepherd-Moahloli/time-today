@@ -137,17 +137,7 @@
 }
 
 
- #circle {
-     margin: 0 auto;
-     width: 5rem;
-     aspect-ratio: 1/1;
-     background-color: #f0f0f0;
-     position: relative;
-     border-radius: 100%;
-     top: -1300%;
-     left: -38%;
-     animation: bounce 1s infinite ease-in;
- }
+
 
 
 @keyframes drops {
@@ -383,7 +373,7 @@
 
  #dayNightToggle {
      position: relative;
-     bottom: 160%;
+     bottom: 140%;
      width: 4rem;
      z-index: 10000;
      height: 4rem;
